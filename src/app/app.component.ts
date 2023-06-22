@@ -1,41 +1,29 @@
 import { Component } from '@angular/core';
 import { HousingLocation } from './housing-location';
+import { HousingLocationService } from './services/housing-location.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [HousingLocationService]
 })
 export class AppComponent {
   title = 'fairhouse';
 
-  housingLocationList: HousingLocation[] = [
-    {
-      name: "Joseph Fresh Start Housing",
-      city: "Davao",
-      state: "Davao",
-      photo: "../assets/housing-1.jpg",
-      availableUnits: 4,
-      wifi: true,
-      laundry: true,
-    },
-    {
-      name: "Shai Transitional Housing",
-      city: "Dulag",
-      state: "Leyte",
-      photo: "../assets/housing-2.jpg",
-      availableUnits: 0,
-      wifi: false,
-      laundry: true,
-    },
-    {
-      name: "Nard Beds Housing Support",
-      city: "Cebu",
-      state: "Cebu",
-      photo: "../assets/housing-3.jpg",
-      availableUnits: 1,
-      wifi: false,
-      laundry: false,
-    }
-  ];
+  housingLocationList: HousingLocation[] = [];
+
+  constructor(private housingLocationService: HousingLocationService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.housingLocationList = this.housingLocationService.getHousingLocations();
+  }
+  
+  updateSelectedLocation(location: HousingLocation) {
+    const locationId: string = location.id;
+    this.router.navigate(['housing-result', locationId]);
+  }
+
+
 }

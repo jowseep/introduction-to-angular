@@ -1,0 +1,11 @@
+.selectedLocation {
+    width: 200px;
+    height: auto;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.selectedLocation img {
+    height: 275px;
+    width: auto;
+}

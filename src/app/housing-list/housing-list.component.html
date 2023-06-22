@@ -1,3 +1,14 @@
 <label for="location-search">Mangita og bag-o na balay</label>
 <input id="location-search" #search placeholder="Ex: Davao">
 <button (click)="searchHousingLocations(search.value)">Mangita</button>
+<article *ngFor="let location of results">
+    <img src="{{location.photo}}" alt="Photo">
+    <p>{{location.name}}</p>
+    <p>City: {{location.city}}</p>
+    <p>State: {{location.state}}</p>
+    <p>Available units: {{location.availableUnits}}</p>
+    <!-- <button (click)="selectHousingLocation(location)" >View</button> -->
+    <!-- <button routerLink="housing-result/{{location.id}}">View</button> -->
+    <button (click)="selectHousingLocation(location)" routerLink="housing-result/{{location.id}}">View</button>
+    <!-- <a [routerLink]="/result">View</a> -->
+</article>
